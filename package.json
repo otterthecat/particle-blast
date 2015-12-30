@@ -1,0 +1,26 @@
+{
+  "name": "particle-blast",
+  "version": "1.0.0",
+  "description": "middleware to update your particle device",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otterthecat/particle-blast"
+  },
+  "keywords": [
+    "middleware",
+    "particle",
+    "otc"
+  ],
+  "author": {
+    "name": "Otter the cat",
+    "email": "otc@otterthecat.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "particle-beam": "0.0.1"
+  }
+}

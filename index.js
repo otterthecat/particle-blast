@@ -1,9 +1,9 @@
-'use strict';
 let ParticleBeam = require('particle-beam');
 
 // default request parser
 let handleRequest = function (req) {
-  return ${req.originalUrl};
+  'use strict';
+  return req.originalUrl;
 };
 
 /*
@@ -15,6 +15,8 @@ let handleRequest = function (req) {
   - callback  (Optional callback once Particle API successfully hit)
  */
 let Blast = function (options) {
+  'use strict';
+
   this.beam = ParticleBeam({
     'device': options.device,
     'token': options.token
@@ -25,7 +27,7 @@ let Blast = function (options) {
 };
 
 Blast.prototype.fire = function (req, res, next) {
-  let data = `${req.route}:${req.prams}`;
+  'use strict';
   this.beam(this.action, this.parse(req), this.callback);
   next();
 };

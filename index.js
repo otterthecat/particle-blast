@@ -10,9 +10,6 @@ let handleRequest = function (req) {
   Options list:
   - device    (Particle device id)
   - token     (Particle Build token)
-  - action    (Name of registred Particle function)
-  - parse     (User defined function to parse request into sendable data to particle device)
-  - callback  (Optional callback once Particle API successfully hit)
  */
 let Blast = function (options) {
   'use strict';
@@ -21,15 +18,24 @@ let Blast = function (options) {
     'device': options.device,
     'token': options.token
   });
-  this.action = options.action;
-  this.parse = options.parse || handleRequest;
-  this.callback = options.callback || function () {};
 };
 
-Blast.prototype.fire = function (req, res, next) {
+/*
+  Arguments:
+  - action    (Required, Name of registred Particle function)
+  - parse     (Optional, User defined function to parse request into sendable data to particle device)
+  - callback  (Optional, callback once Particle API successfully hit)
+ */
+Blast.prototype.fire = function (action, parse, callback) {
   'use strict';
-  this.beam(this.action, this.parse(req), this.callback);
-  next();
+
+  parse = parse || handleRequest;
+  callback = callback || function () {};
+
+  return function (req, res, next) {
+    this.beam(action, parse(req), callback);
+    next();
+  };
 };
 
 module.exports = Blast;

@@ -35,7 +35,7 @@ Blast.prototype.fire = function (action, parse, callback) {
   return function (req, res, next) {
     this.beam(action, parse(req), callback);
     next();
-  };
+  }.bind(this);
 };
 
 module.exports = Blast;

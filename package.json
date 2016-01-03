@@ -4,7 +4,7 @@
   "description": "middleware to update your particle device",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",

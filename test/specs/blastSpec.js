@@ -1,3 +1,4 @@
+/*eslint max-nested-callbacks: 0, no-unused-expressions: 0 */
 'use strict';
 // assertion library
 // /////////////////////////////////////////////////////////
@@ -30,7 +31,6 @@ parse.withArgs(req).returns(req.originalUrl);
 
 describe('Particle-Blast', function () {
   describe('instance', function () {
-
     it('should have a "fire" function', function () {
       blast.fire.should.be.a('function');
     });
@@ -44,18 +44,17 @@ describe('Particle-Blast', function () {
       });
 
       describe('The middleware function', function () {
-
         middleware(req, res, next);
 
-        it('should call the #beam() function', function (){
+        it('should call the #beam() function', function () {
           blast.beam.should.have.been.calledWith(action, req.originalUrl, callback);
         });
 
-        it('should call the passed parse() argument', function (){
+        it('should call the passed parse() argument', function () {
           parse.should.have.been.calledWith(req);
         });
 
-        it('should call the passed next() argument', function (){
+        it('should call the passed next() argument', function () {
           next.should.have.been.called;
         });
       });

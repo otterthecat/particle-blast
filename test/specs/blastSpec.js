@@ -17,7 +17,7 @@ let config = {
 // modules to test
 // /////////////////////////////////////////////////////////
 let Blast = require('../../index');
-let blast = new Blast(config);
+let blast;
 let middleware;
 let action = 'rawr';
 let callback = sinon.spy();
@@ -30,31 +30,45 @@ let parse = sinon.stub();
 parse.withArgs(req).returns(req.originalUrl);
 
 describe('Particle-Blast', function () {
+
+  beforeEach(function () {
+    blast = new Blast(config);
+    sinon.spy(blast, 'beam');
+    middleware = blast.fire(action, parse, callback);
+  });
+
+  afterEach(function () {
+    blast = null;
+    middleware = null;
+    next.reset();
+    parse.reset();
+    parse.withArgs(req).returns(req.originalUrl);
+  });
+
   describe('instance', function () {
     it('should have a "fire" function', function () {
       blast.fire.should.be.a('function');
     });
 
     describe('#fire()', function () {
-      sinon.spy(blast, 'beam');
-      middleware = blast.fire(action, parse, callback);
-
       it('should return a middleware function', function () {
         middleware.should.be.a('function');
       });
 
       describe('The middleware function', function () {
-        middleware(req, res, next);
 
         it('should call the #beam() function', function () {
+          blast.fire(action, parse, callback);middleware(req, res, next);
           blast.beam.should.have.been.calledWith(action, req.originalUrl, callback);
         });
 
         it('should call the passed parse() argument', function () {
+          middleware(req, res, next);
           parse.should.have.been.calledWith(req);
         });
 
         it('should call the passed next() argument', function () {
+          middleware(req, res, next);
           next.should.have.been.called;
         });
       });

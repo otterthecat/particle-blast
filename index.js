@@ -25,8 +25,12 @@ let Blast = function (options) {
   - callback  (Optional, callback once Particle API successfully hit)
  */
 Blast.prototype.fire = function (action, parse, callback) {
-  parse = parse || handleRequest;
-  callback = callback || function () {};
+  let argLength = arguments.length;
+  if(argLength < 1 || argLength > 3) {
+    throw new Error('invalid number of arguments');
+  }
+  parse = argLength === 3 ? parse : handleRequest;
+  callback = arguments[argLength - 1];
 
   return (req, res, next) => {
     this.beam(action, parse(req), callback);

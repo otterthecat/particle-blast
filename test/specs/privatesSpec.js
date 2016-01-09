@@ -10,19 +10,18 @@ chai.use(sinonChai);
 
 // mock data
 let mockReq = {
-  'originalIp': '1313'
+  'originalUrl': '1313'
 };
 
 // modules to test
 // /////////////////////////////////////////////////////////
 let privates = require('../../lib/privates');
 
-
 describe('Privates', function () {
   describe('#handleRequest', function () {
-    it('should return .originalIp of passed request', function (){
-      let ip = privates.handleRequest(mockReq.originalIp);
-      ip.should.be(mockReq.originalIp);
+    it('should return .originalUrl of passed request', function (){
+      let ip = privates.handleRequest(mockReq);
+      ip.should.eql(mockReq.originalUrl);
     });
   });
 
@@ -31,9 +30,9 @@ describe('Privates', function () {
       privates.noop.should.be.a.function;
     })
 
-    it('should not return anything when called', function (){
-      let val = privates.noop();
-      val.should.be.undefined;
+    it('should return undefined when called', function (){
+      var val = typeof privates.noop();
+      val.should.equal('undefined');
     });
   });
 });

@@ -1,6 +1,6 @@
 # Particle-Blast
 
-Middleware to conveniently blast your Particle device with request details.
+Middleware to conveniently blast your [Particle](https://particle.io) device with request details.
 
 ## Usage
 
@@ -30,9 +30,9 @@ Returns middleware function.
 
 **Arguments:**
 
-`deviceFunction` - **String**, name of registered Particle Function you wish to invoke.
+`deviceFunction` - **String**, name of registered [Particle Function](https://docs.particle.io/reference/firmware/photon/#particle-function-) you wish to invoke.
 
-`parseFunction` - **Function**, takes the request object as an argument. Use this to get whatever data you need from the request object. This will return the string data your registered Particle Function may require.
+`parseFunction` - **Function**, takes the request object as an argument. Use this to get whatever data you need from the [request object](http://expressjs.com/en/4x/api.html#req). This will return the string data your registered Particle Function may require.
 
 `callback` - **Function**, callback to execute after your device returns an error and/or data.
 

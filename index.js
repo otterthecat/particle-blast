@@ -1,10 +1,6 @@
 'use strict';
 let ParticleBeam = require('particle-beam');
-
-// default request parser
-let handleRequest = function (req) {
-  return req.originalUrl;
-};
+let privates = require('./lib/privates');
 
 /*
   Options list:
@@ -28,8 +24,8 @@ Blast.prototype.fire = function (action, parse, callback) {
   if (typeof action !== 'string') {
     throw new TypeError('action must be a string');
   }
-  parse = parse || handleRequest;
-  callback = callback || function () {};
+  parse = parse || privates.handleRequest;
+  callback = callback || privates.noop;
 
   return (req, res, next) => {
     this.beam(action, parse(req), callback);

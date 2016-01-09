@@ -1,5 +1,6 @@
 node_modules/
 metrics/
+coverage/
 test/
 gulp/
 gulpfile.js

@@ -2,23 +2,32 @@
   "name": "particle-blast",
   "version": "1.0.0",
   "description": "middleware to update your particle device",
+  "homepage": "https://github.com/otterthecat/particle-blast",
+  "bugs": "https://github.com/otterthecat/particle-blast/issues",
+  "author": {
+    "name": "Otter the cat",
+    "email": "otc@otterthecat.com"
+  },
+  "engines": {
+    "node": ">=4.2.1",
+    "npm": ">=2.14.7"
+  },
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/otterthecat/particle-blast"
+    "url": "git@github.com:otterthecat/particle-blast.git"
+  },
+  "directories": {
+    "lib": "./lib"
   },
   "keywords": [
     "middleware",
     "particle",
     "otc"
   ],
-  "author": {
-    "name": "Otter the cat",
-    "email": "otc@otterthecat.com"
-  },
   "license": "MIT",
   "dependencies": {
     "particle-beam": "^1.0.0"

@@ -32,7 +32,6 @@ let parse = sinon.stub();
 parse.withArgs(req).returns(req.ip);
 
 describe('Particle-Blast', function () {
-
   beforeEach(function () {
     blast = new Blast(config);
     sinon.spy(blast, 'beam');
@@ -82,7 +81,7 @@ describe('Particle-Blast', function () {
         });
 
         describe('when called without callback', function () {
-          it('should use default callback', function (){
+          it('should use default callback', function () {
             let m = blast.fire(action, parse);
             m(req, res, next);
             blast.beam.should.have.been.calledOnce;
